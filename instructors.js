@@ -16,11 +16,11 @@ exports.show = function (req, res) {
         ... foundInstructor,
         age:"",
         gender:"",
-        service:foundInstructor.service.split(`,`),
+        services:foundInstructor.services.split(","),
         created_at:"",
     }
 
-    return res.render("instructors/show", {instructor: foundInstructor})
+    return res.render("instructors/show", {instructor})
 }
 
 //create
@@ -34,7 +34,7 @@ exports.post = function (req, res) {
             }
         }
 
-        let {avatar_url,name,birth,gender,service} = req.body
+        let {avatar_url,name,birth,gender,services} = req.body
 
         birth = Date.parse(birth)
         const created_at = Date.now()
@@ -48,7 +48,7 @@ exports.post = function (req, res) {
             name,
             birth,
             gender,
-            service,
+            services
             created_at
         })
 
