@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('./data.json')
-const {age} = require('./utils')
+const {age, date} = require('./utils')
 
 //show
 exports.show = function (req, res) {
@@ -73,6 +73,39 @@ exports.edit = function(req, res) {
     if (!foundInstructor) {
         return res.send("Instructor not found!!")
     }
+    const instructor = {
+        ... foundInstructor,
+        birth: Date(foundInstructor.birth)
+    }
+    return res.render('instructors/edit',{instructor})
+}
 
-    return res.render('instructors/edit',{instructor:foundInstructor})
+//put
+exports.put = function(req,res) {
+    const {id} = req.body
+    let index = 0
+    const foundInstructor = data.instructors.find(function(instructor, foundIndex) {
+        if (id == instructor.id) {
+            index = foundIndex
+            return true
+        }
+    })
+    if (!foundInstructor) {
+        return res.send("Instructor not found!!")
+    }
+
+    const instructor = {
+        ... foundInstructor,
+        ... req.body,
+        birth: Date.parse(req.body.birth)
+    }
+    
+    date.instructors[index] = instructor
+
+    fs.writeFile("data.json", JSON.stringify(date, null, 2), function(error){
+        if(error) return res.send("Write error!!")
+
+        return res.redirect(`/instructors/${id}`)
+    })
+
 }
