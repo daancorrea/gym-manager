@@ -82,7 +82,7 @@ exports.edit = function(req, res) {
 
 //put
 exports.put = function(req,res) {
-    const {id} = req.body
+    const { id } = req.body
     let index = 0
     const foundInstructor = data.instructors.find(function(instructor, foundIndex) {
         if (id == instructor.id) {
@@ -90,9 +90,8 @@ exports.put = function(req,res) {
             return true
         }
     })
-    if (!foundInstructor) {
-        return res.send("Instructor not found!!")
-    }
+
+    if (!foundInstructor) return res.send("Instructor not found!!")
 
     const instructor = {
         ... foundInstructor,
@@ -100,9 +99,9 @@ exports.put = function(req,res) {
         birth: Date.parse(req.body.birth)
     }
     
-    date.instructors[index] = instructor
+    data.instructors[index] = instructor
 
-    fs.writeFile("data.json", JSON.stringify(date, null, 2), function(error){
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(error){
         if(error) return res.send("Write error!!")
 
         return res.redirect(`/instructors/${id}`)
