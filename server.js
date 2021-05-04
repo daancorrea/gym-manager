@@ -17,6 +17,7 @@ nunjucks.configure("views", {
     express: server,
     autoescape: false,
     noCache: true,
+    watch: true,
 })
 
 server.get("/", function(req, res){

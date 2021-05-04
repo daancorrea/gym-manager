@@ -1,0 +1,68 @@
+
+
+        <div class="item">
+
+        <div>Avatar URL</div>
+            <div>
+                <input 
+                    type="url" 
+                    name="avatar_url" 
+                    placeholder="http://"
+                    value="{{ instructor.avatar_url}}">
+            </div>
+        </div>  
+
+        <div>Instrutor</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name" 
+                    placeholde="Nome do instrutor"
+                    value="{{ instructor.name}}">
+            </div>
+
+        <div class="item">
+            <div>Data de Nascimento</div>
+                <div>
+                    <input 
+                        type="date" 
+                        name="birth"
+                        value="{{ instructor.birth}}">
+                </div>
+        </div>
+        
+        <div class="item">
+            <div>Sexo</div>
+                <div>
+                    <span>
+                        <input 
+                            type="radio" 
+                            name="gender"
+                            value="m" {% if instructor.gender =="m" %}
+                                        checked
+                                      {% endif %}checked>Masculino
+                    </span>
+                    <span>
+                        <input 
+                            type="radio" 
+                            name="gender"
+                            value="f" {% if instructor.gender == "f" %}
+                                        checked                                
+                                      {% endif %}>Feminino
+                    </span>                        
+                </div>
+        <div class="item">
+
+            <div>Área de Atuação</div>            
+                <div>
+                <input 
+                    type="text" 
+                    name="services" 
+                    placeholder="Separe os serviços prestados por virgula"
+                    value="{{instructor.services}}">
+                </div>    
+        </div>
+
+        <button type="submit">Salvar</button>
+
+       
