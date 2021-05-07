@@ -1,15 +1,4 @@
 {
-  "members":[],
-  
-  "instructors": [
-    {
-      "id": 1,
-      "avatar_url": "http://google.com",
-      "name": "Daniel Correa",
-      "birth": 844560000000,
-      "gender": "m",
-      "services": "natação, musculação",
-      "created_at": 1620163965357
-    }
-  ]
+  "members": [],
+  "instructors": []
 }

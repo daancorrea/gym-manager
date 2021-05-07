@@ -5,13 +5,7 @@ const { age, date } = require('../utils')
 // index
 
 exports.index = function (req, res) {
-        data.instructors.forEach(function(item){
-            item.services = Array.isArray(item.services) ? item.services:
-            item.services.split(',')
-            
-            return item.services
-    })
-    
+          
     return res.render("instructors/index", { instructors: data.instructors })
 }
 
@@ -29,7 +23,7 @@ exports.show = function (req, res) {
     const instructor = {
         ...foundInstructor,
         age: age(foundInstructor.birth),
-        services: foundInstructor.services.split(","),
+        services: (foundInstructor.services.split(",")),
         created_at: new Intl.DateTimeFormat("pt-br").format(foundInstructor.created_at),
     }
 
